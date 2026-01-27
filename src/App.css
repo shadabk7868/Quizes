@@ -1,0 +1,43 @@
+body {
+  background: #f4f6f9;
+}
+
+/* Card look */
+.app-card {
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Headings */
+.page-title {
+  font-weight: 600;
+  color: #152f48;
+}
+
+/* Form inputs */
+.form-control:focus,
+.form-select:focus {
+  box-shadow: none;
+  border-color: #0d6efd;
+}
+
+/* Table */
+.custom-table thead {
+  background: linear-gradient(45deg, #0d6efd, #6610f2);
+  color: white;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f1f5ff;
+}
+
+/* Badges */
+.badge-active {
+  background-color: #198754;
+}
+
+.badge-inactive {
+  background-color: #dc3545;
+}
+

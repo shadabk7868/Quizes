@@ -1,0 +1,63 @@
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
+import './App.css';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import Users from './pages/Users.jsx';
+import AddUser from './pages/AddUser.jsx';
+import Management from './pages/Management.jsx';
+import DashHero from './pages/DashHero.jsx';
+import Error from './pages/Error.jsx';
+import Home from './pages/Home.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import Register from './pages/Register.jsx';
+import Login from './pages/Login.jsx';
+import AdminLogin from './pages/AdminLogin.jsx';
+import ProtectedRoute from './pages/ProtectedRoute.jsx';
+import ProtectedUserRoute from './pages/ProtectedUserRoute.jsx';
+import UpdateUser from './pages/Updateuser.jsx';
+import AddQuiz from './pages/AddQuiz.jsx';
+import ShowQuiz from './pages/ShowQuiz.jsx';
+import Navbar from './pages/Navbars.jsx';
+import Quizzes from './pages/Quizzes.jsx';
+import Leaderboard from './pages/Leaderboard.jsx';
+
+export default function App() {
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  
+
+  return (
+    <>
+      {!location.pathname.includes("dashboard") && <Navbar />}
+
+      <Routes>
+      
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard-login" element={<AdminLogin />} />
+
+        <Route path="/quizzes" element={<ProtectedUserRoute><Quizzes /></ProtectedUserRoute>} />
+        <Route path="/leaderboard" element={<ProtectedUserRoute><Leaderboard /></ProtectedUserRoute>} />
+
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
+          <Route index element={<DashHero />} />
+          <Route path="users" element={<Users />} />
+          <Route path="adduser" element={<AddUser />} />
+          <Route path="updateuser/:id" element={<UpdateUser />} />
+          <Route path="management" element={<Management />} />
+          <Route path="addquiz" element={<AddQuiz />} />
+          <Route path="showquiz" element={<ShowQuiz />} />
+        </Route>
+
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </>
+  );
+}
