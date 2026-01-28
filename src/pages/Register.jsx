@@ -1,36 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../Firebase.js';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export default function Register() {
-
   const nav = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const submithandler = async (e) => {
-    e.preventDefault();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
 
-    try {
-      const docRef = await addDoc(collection(db, "users"), {
-        email: email,
-        password: password
-      });
-      console.log("Document written with ID: ", docRef.id)
-      alert("User registered successfully");
-      nav("/login");
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Invalid email format")
+        .required("Email is required"),
 
-    } catch (err) {
-      console.error("Error adding document: ", err)
-      alert("Something went wrong");
-    }
-  };
+      password: Yup.string()
+        .min(4, "Password must be at least 4 characters")
+        .required("Password is required"),
+    }),
+
+    onSubmit: async (values) => {
+      try {
+        const docRef = await addDoc(collection(db, "users"), {
+          email: values.email,
+          password: values.password,
+        });
+
+        console.log("Document written with ID: ", docRef.id);
+        alert("User registered successfully");
+        nav("/login");
+
+      } catch (err) {
+        console.error("Error adding document: ", err);
+        alert("Something went wrong");
+      }
+    },
+  });
 
   return (
     <div className='w-100 vh-100 d-flex justify-content-center align-items-center bg-light'>
-      <form 
-        onSubmit={submithandler} 
+      <form
+        onSubmit={formik.handleSubmit}
         className='w-50 text-white p-5 rounded shadow'
         style={{ background: "linear-gradient(135deg, #8d64b6, #48325c)" }}
       >
@@ -38,24 +53,32 @@ export default function Register() {
 
         <div className="mb-3">
           <label className="form-label">Email</label>
-          <input 
+          <input
             type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            name="email"
             className="form-control"
-            required
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.email && formik.errors.email && (
+            <small className="text-warning">{formik.errors.email}</small>
+          )}
         </div>
 
         <div className="mb-4">
           <label className="form-label">Password</label>
-          <input 
+          <input
             type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            name="password"
             className="form-control"
-            required
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.password && formik.errors.password && (
+            <small className="text-warning">{formik.errors.password}</small>
+          )}
         </div>
 
         <button type="submit" className="btn btn-light w-100 fw-bold">

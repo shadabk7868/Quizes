@@ -1,22 +1,36 @@
 import { useEffect, useState } from "react";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../Firebase";
 
 export default function ShowQuiz() {
   const [quizes, setQuizes] = useState({});
   const [editData, setEditData] = useState(null);
 
+  // 🔥 LOAD FROM FIREBASE (same object structure)
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("allQuizes")) || {};
-    setQuizes(data);
+    const fetchQuizes = async () => {
+      const ref = doc(db, "appdata", "allQuizes");
+      const snap = await getDoc(ref);
+
+      if (snap.exists()) {
+        setQuizes(snap.data().data || {});
+      }
+    };
+
+    fetchQuizes();
   }, []);
 
-  const deleteQuiz = (category, index) => {
+  const deleteQuiz = async (category, index) => {
     const updated = { ...quizes };
     updated[category].splice(index, 1);
-    localStorage.setItem("allQuizes", JSON.stringify(updated));
+
+    const ref = doc(db, "appdata", "allQuizes");
+    await setDoc(ref, { data: updated });
+
     setQuizes(updated);
   };
 
-  const updateQuiz = () => {
+  const updateQuiz = async () => {
     const { category, index, question, options, correctOption } = editData;
     const updated = { ...quizes };
 
@@ -26,7 +40,9 @@ export default function ShowQuiz() {
       correctOption,
     };
 
-    localStorage.setItem("allQuizes", JSON.stringify(updated));
+    const ref = doc(db, "appdata", "allQuizes");
+    await setDoc(ref, { data: updated });
+
     setQuizes(updated);
     setEditData(null);
   };
@@ -120,7 +136,6 @@ export default function ShowQuiz() {
                       ))}
                     </ul>
 
-                    {/* ✅ FIXED: option letter + option text */}
                     <p className="text-success fw-bold mb-3">
                       Correct Answer: {q.correctOption?.toUpperCase()} —{" "}
                       {correctText}
@@ -159,6 +174,7 @@ export default function ShowQuiz() {
     </div>
   );
 }
+
 
 
 
