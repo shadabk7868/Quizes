@@ -12,7 +12,17 @@ export default function RankingCategories() {
   ];
 
   return (
-    <div className="container mt-5">
+    <div
+  className="container-fluid py-5"
+  style={{
+    minHeight: "100vh",
+    backgroundImage:
+      "url('https://i1-c.pinimg.com/1200x/34/12/74/3412745d4803187eaeaf08dc1a83349b.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
 
       <h2 className="text-center fw-bold mb-5">
         🏆 Quiz Rankings

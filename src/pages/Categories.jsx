@@ -27,20 +27,34 @@ export default function Categories() {
   }, []);
 
   return (
-    <div className="container py-5 text-center">
-      <h2 className="fw-bold mb-5">Select Quiz Category 🎯</h2>
+    <div
+  className="container-fluid py-5 text-center"
+  style={{
+    minHeight: "100vh",
+    backgroundImage:
+      "url('https://i1-c.pinimg.com/736x/ad/02/07/ad020763b7c3198a3da9f24b9a462fcc.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+      <h2 className="fw-bold  mb-5"
+      style={{
+          color: "#474747",
+        }}>Select Quiz Category 🎯</h2>
 
-      <div className="row justify-content-center">
+      <div className="row justify-content-center px-4">
 
         {categories.map((cat) => (
           <div key={cat} className="col-10 col-sm-6 col-md-4 col-lg-3 mb-4">
 
             <div
-              className="card shadow p-5 h-100"
+              className="card shadow border-0 p-5 h-100"
               style={{
                 cursor: "pointer",
                 borderRadius: "15px",
-                minHeight: "180px"
+                minHeight: "180px",
+                backgroundColor:"#eeecece4",
               }}
               onClick={() => navigate(`/quizzes/${cat}`)}
             >

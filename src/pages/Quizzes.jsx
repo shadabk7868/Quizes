@@ -207,7 +207,17 @@ export default function Quizzes() {
   };
 
   return (
-    <div className="container d-flex justify-content-center mt-5 mb-5">
+    <div
+  className="container-fluid d-flex justify-content-center align-items-center py-5"
+  style={{
+    minHeight: "100vh",
+    backgroundImage:
+      "url('https://i.pinimg.com/736x/c2/25/6e/c2256ef7469f33656e4a45f0aa8eed4c.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
       <div
         className="card shadow-lg p-4 border-0"
         style={{

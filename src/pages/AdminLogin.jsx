@@ -7,7 +7,6 @@ export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Fixed Admin Credentials
   const ADMIN_EMAIL = "admin@gmail.com";
   const ADMIN_PASSWORD = "123456";
 
