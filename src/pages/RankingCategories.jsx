@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { FaTrophy } from "react-icons/fa";
 
 export default function RankingCategories() {
 
@@ -25,7 +26,7 @@ export default function RankingCategories() {
 >
 
       <h2 className="text-center fw-bold mb-5">
-        🏆 Quiz Rankings
+        <FaTrophy/> Quiz Rankings
       </h2>
 
       <div className="row justify-content-center">

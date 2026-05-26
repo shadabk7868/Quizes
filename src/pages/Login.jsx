@@ -73,7 +73,7 @@ export default function Login() {
         onSubmit={formik.handleSubmit}
         className="col-11 col-sm-9 col-md-6 col-lg-4 p-4 rounded-4 shadow-lg bg-white"
       >
-        <h2 className="text-center fw-bold mb-4">Welcome Back 👋</h2>
+        <h2 className="text-center fw-bold mb-4">Welcome Back </h2>
 
         <div className="mb-3">
           <label className="fw-semibold">Email</label>

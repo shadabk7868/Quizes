@@ -1,25 +1,35 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 
 export default function ShowQuiz() {
+  const { category } = useParams();
+
   const [quizes, setQuizes] = useState({});
   const [editData, setEditData] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   // LOAD QUIZES
   useEffect(() => {
-    const fetchQuizes = async () => {
-      const ref = doc(db, "appdata", "allQuizes");
-      const snap = await getDoc(ref);
+  const fetchQuizes = async () => {
+    const ref = doc(db, "appdata", "allQuizes");
+    const snap = await getDoc(ref);
 
-      if (snap.exists()) {
-        setQuizes(snap.data().data || {});
+    if (snap.exists()) {
+      const data = snap.data().data || {};
+
+      setQuizes(data);
+
+      // direct category open
+      if (category && data[category]) {
+        setSelectedCategory(category);
       }
-    };
+    }
+  };
 
-    fetchQuizes();
-  }, []);
+  fetchQuizes();
+}, [category]);
 
   // DELETE QUIZ
   const deleteQuiz = async (category, index) => {
@@ -70,10 +80,10 @@ export default function ShowQuiz() {
   return (
     <div className="container mt-5" style={{ maxWidth: "950px" }}>
       <h3 className="text-center mb-5 text-primary fw-bold">
-        📚 All Quizzes
-      </h3>
+   {selectedCategory ? `${selectedCategory} Quizzes` : "All Quizzes"}
+</h3>
 
-      {/* ✅ CATEGORY VIEW */}
+      {/* CATEGORY VIEW */}
       {!selectedCategory && (
         <div className="row justify-content-center">
           {Object.keys(quizes).length === 0 && (

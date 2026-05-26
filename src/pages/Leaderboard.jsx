@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { FaTrophy } from "react-icons/fa";
+
 import {
   collection,
   getDocs,
@@ -126,7 +128,7 @@ export default function Leaderboard() {
         >
 
           <h2 className="text-center fw-bold mb-4">
-            🏆 {category} Leaderboard
+            <FaTrophy/> {category} Leaderboard
           </h2>
 
           {filteredData.length === 0 ? (

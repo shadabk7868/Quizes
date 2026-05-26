@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import {BsLightningChargeFill} from "react-icons/bs"
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function Dashboard() {
         }}
       >
         <span className="navbar-brand fw-bold text-white fs-4">
-          Admin Panel ⚡
+          Admin Panel <BsLightningChargeFill/>
         </span>
 
         <button

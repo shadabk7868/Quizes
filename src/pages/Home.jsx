@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 
+import { MdQuiz } from "react-icons/md";
+import { BsLightningChargeFill } from "react-icons/bs";
+import { FaTrophy } from "react-icons/fa";
+
 export default function Home() {
   return (
     <div
@@ -104,12 +108,12 @@ export default function Home() {
               <div className="card-body text-center">
 
                 <div
-                  className="mb-3"
+                  className="mb-3 text-primary"
                   style={{
                     fontSize: "clamp(35px, 8vw, 50px)",
                   }}
                 >
-                  📚
+                  <MdQuiz />
                 </div>
 
                 <h4 className="fw-bold">
@@ -136,12 +140,12 @@ export default function Home() {
               <div className="card-body text-center">
 
                 <div
-                  className="mb-3"
+                  className="mb-3 text-warning"
                   style={{
                     fontSize: "clamp(35px, 8vw, 50px)",
                   }}
                 >
-                  ⚡
+                  <BsLightningChargeFill />
                 </div>
 
                 <h4 className="fw-bold">
@@ -168,12 +172,12 @@ export default function Home() {
               <div className="card-body text-center">
 
                 <div
-                  className="mb-3"
+                  className="mb-3 text-success"
                   style={{
                     fontSize: "clamp(35px, 8vw, 50px)",
                   }}
                 >
-                  🏆
+                  <FaTrophy />
                 </div>
 
                 <h4 className="fw-bold">
@@ -203,7 +207,6 @@ export default function Home() {
 
       </div>
 
-      {/* HOW IT WORKS */}
       <div
         className="py-5"
         style={{
@@ -213,7 +216,7 @@ export default function Home() {
         <div className="container text-center">
 
           <h2 className="fw-bold mb-5">
-            How It Works ⚡
+            How It Works ?
           </h2>
 
           <div className="row g-4">
@@ -228,7 +231,6 @@ export default function Home() {
                 <div
                   style={{
                     fontSize: "clamp(30px, 8vw, 45px)",
-
                   }}
                 >
                   1
@@ -255,7 +257,6 @@ export default function Home() {
                 <div
                   style={{
                     fontSize: "clamp(30px, 8vw, 45px)",
-
                   }}
                 >
                   2
@@ -282,7 +283,6 @@ export default function Home() {
                 <div
                   style={{
                     fontSize: "clamp(30px, 8vw, 45px)",
-
                   }}
                 >
                   3

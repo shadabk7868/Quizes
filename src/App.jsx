@@ -58,6 +58,7 @@ export default function App() {
           <Route path="updateuser/:id" element={<UpdateUser />} />
           <Route path="addquiz" element={<AddQuiz />} />
           <Route path="showquiz" element={<ShowQuiz />} />
+          <Route path="showquiz/:category" element={<ShowQuiz />} />  
         </Route>
 
       </Routes>

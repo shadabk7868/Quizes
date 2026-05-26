@@ -63,7 +63,7 @@ export default function Register() {
         onSubmit={formik.handleSubmit}
         className="col-11 col-sm-9 col-md-6 col-lg-4 p-4 rounded-4 shadow-lg bg-white"
       >
-        <h2 className="text-center fw-bold mb-4">Create Account 🚀</h2>
+        <h2 className="text-center fw-bold mb-4">Create Account </h2>
 
         <div className="mb-3">
           <label className="fw-semibold">Email</label>

@@ -5,6 +5,7 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
+import { FaUsers } from "react-icons/fa";
 
 import { useNavigate } from "react-router-dom";
 import { db } from "../Firebase";
@@ -68,23 +69,22 @@ export default function DashHero() {
             className="card border-0 shadow-sm h-50 p-2"
             style={{
               borderRadius: "16px",
-              cursor: "pointer",
               backgroundColor: "#4f46e5",
               transition: "0.3s",
             }}
-            onClick={() => navigate("/")}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform =
-                "translateY(-3px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform =
-                "translateY(0px)";
-            }}
+            // onClick={() => navigate("/")}
+            // onMouseEnter={(e) => {
+            //   e.currentTarget.style.transform =
+            //     "translateY(-3px)";
+            // }}
+            // onMouseLeave={(e) => {
+            //   e.currentTarget.style.transform =
+            //     "translateY(0px)";
+            // }}
           >
             <div className="card-body text-white text-center py-3">
               <h6 className="fw-semibold">
-                👥 Total Users
+                 Total Users
               </h6>
 
               <h2 className="fw-bold mt-2">
@@ -104,7 +104,7 @@ export default function DashHero() {
               backgroundColor: "#c96a2b",
               transition: "0.3s",
             }}
-            onClick={() => navigate("/categories")}
+            onClick={() => navigate("/dashboard/showquiz")}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform =
                 "translateY(-3px)";
@@ -116,7 +116,7 @@ export default function DashHero() {
           >
             <div className="card-body text-white text-center py-3">
               <h6 className="fw-semibold">
-                📚 Total Questions
+                 Total Questions
               </h6>
 
               <h2 className="fw-bold mt-2">
@@ -137,7 +137,7 @@ export default function DashHero() {
           >
             <div className="card-body py-2">
               <h6 className="text-center fw-bold mb-3">
-                🧠 Category Wise
+                 Category Wise
               </h6>
 
               <ul className="list-group">
@@ -159,7 +159,7 @@ export default function DashHero() {
                         backgroundColor: "#ffffff",
                       }}
                       onClick={() =>
-                        navigate(`/quizzes/${cat}`)
+                        navigate(`/dashboard/showquiz/${cat}`)
                       }
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform =
